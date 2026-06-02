@@ -763,6 +763,119 @@
     color: var(--gimi-text);
   }
 
+
+  /* ---------- Proper subsection headers (replaces weak dt label) ---------- */
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0 14px 0;
+  }
+  .block-header::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--gimi-teal);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .block-header h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    margin: 0;
+    letter-spacing: -0.1px;
+  }
+  .block-body { font-size: 15px; line-height: 1.7; color: var(--gimi-text); }
+
+  /* ---------- Hero stat cards (format/pass score, cycle/CPE) ---------- */
+  .stat-hero-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 4px;
+  }
+  @media (max-width: 700px) {
+    .stat-hero-grid { grid-template-columns: 1fr; }
+  }
+  .stat-hero {
+    background: linear-gradient(180deg, #F8FAFB 0%, #FFFFFF 100%);
+    border: 1px solid #E5E7EB;
+    border-left: 4px solid var(--gimi-teal);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .stat-hero .sh-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    letter-spacing: 1.2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .stat-hero .sh-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .stat-hero .sh-sub {
+    font-size: 13px;
+    color: var(--gimi-gray);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---------- Grounds cards (suspension / withdrawal) ---------- */
+  .grounds-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  @media (max-width: 800px) {
+    .grounds-grid { grid-template-columns: 1fr; }
+  }
+  .grounds-card {
+    background: #F8FAFB;
+    border: 1px solid #E5E7EB;
+    border-top: 3px solid var(--gimi-teal);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .grounds-card h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+  }
+  .grounds-card .gc-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    margin-bottom: 10px;
+  }
+  .grounds-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gimi-text);
+    margin: 0;
+  }
+
+  /* Improve route card readability */
+  .route-card {
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .route-card strong {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+  }
+
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
     .hero h1 { font-size: 36px; }
@@ -1012,18 +1125,22 @@
       <article class="subsection-card">
         <span class="subsection-number">2.2</span>
         <h3 id="cert-exam">Examination</h3>
-        <dl>
-          <div class="info-pair">
-            <dt>Format</dt>
-            <dd>60 multiple-choice questions, online with remote proctoring</dd>
+
+        <div class="stat-hero-grid">
+          <div class="stat-hero">
+            <div class="sh-label">Format</div>
+            <div class="sh-value">60 Multiple-Choice Questions</div>
+            <p class="sh-sub">Administered online with remote proctoring.</p>
           </div>
-          <div class="info-pair">
-            <dt>Pass Score</dt>
-            <dd>70%</dd>
+          <div class="stat-hero">
+            <div class="sh-label">Pass Score</div>
+            <div class="sh-value">70%</div>
+            <p class="sh-sub">Required to be granted the certification.</p>
           </div>
-          <div class="info-pair">
-            <dt>Domains &amp; Weighting</dt>
-            <dd>
+        </div>
+
+        <div class="block-header"><h4>Domains &amp; Weighting</h4></div>
+        <div class="block-body">
               <div class="domain-grid">
                 <div class="domain-card">
                   <div class="pct">15%</div>
@@ -1040,17 +1157,16 @@
                   <div class="dname">Innovation Process</div>
                   <p class="ddesc">Innovation Intent; Opportunity Insights; Fields of Play; Business Concepts; Business Case.</p>
                 </div>
-              </div>
-            </dd>
-          </div>
-          <div class="info-pair">
-            <dt>Identity Verification</dt>
-            <dd>All examinations are administered remotely. Before the examination begins, candidates must complete: webcam identity verification using a valid government-issued photo ID; a 360-degree environment scan; and confirmation that network and technical requirements are met. Continuous webcam, screen, and audio monitoring applies throughout the session. Unauthorized applications and websites are blocked. The session is recorded. Authorized aids are pen and paper only. GIMI does not administer onsite or in-person examinations.</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Technical Requirements</dt>
-            <dd>
-              <p>The examination is administered entirely online. Candidates must use a personal computer (desktop or laptop). Tablets, smartphones, and Chromebooks are not permitted.</p>
+        </div>
+
+        <div class="block-header"><h4>Identity Verification</h4></div>
+        <div class="block-body">
+          <p>All examinations are administered remotely. Before the examination begins, candidates must complete: webcam identity verification using a valid government-issued photo ID; a 360-degree environment scan; and confirmation that network and technical requirements are met. Continuous webcam, screen, and audio monitoring applies throughout the session. Unauthorized applications and websites are blocked. The session is recorded. Authorized aids are pen and paper only. GIMI does not administer onsite or in-person examinations.</p>
+        </div>
+
+        <div class="block-header"><h4>Technical Requirements</h4></div>
+        <div class="block-body">
+          <p>The examination is administered entirely online. Candidates must use a personal computer (desktop or laptop). Tablets, smartphones, and Chromebooks are not permitted.</p>
               <p style="margin-top: 10px;"><strong>Minimum system requirements:</strong></p>
               <div class="spec-grid">
                 <div class="spec-card"><div class="spec-label">Operating System</div><div class="spec-value">Windows 10 or later; macOS 11 (Big Sur) or later</div></div>
@@ -1063,14 +1179,13 @@
                 <div class="spec-card"><div class="spec-label">Internet Connection</div><div class="spec-value">Stable broadband connection of at least 5 Mbps download and 2 Mbps upload; wired (Ethernet) connection strongly preferred over Wi-Fi</div></div>
                 <div class="spec-card"><div class="spec-label">Environment</div><div class="spec-value">Private, quiet room; no other persons present; desk surface must be visible to webcam</div></div>
               </div>
-              <p style="margin-top: 10px; font-size: 13px;">GIMI recommends running the proctor platform's system check at least 24 hours before your scheduled examination to confirm all requirements are met.</p>
-            </dd>
-          </div>
-          <div class="info-pair">
-            <dt>Retake Policy</dt>
-            <dd>Candidates are permitted up to 3 attempts per application. Attempt 1 is included in the original examination fee. Attempts 2 and 3 are each subject to a retake fee of USD $260 per attempt. Each attempt draws different questions from the item bank; no candidate sees the same questions on consecutive attempts. After 3 unsuccessful attempts, the candidate must wait 12 months before submitting a new application. All attempts must be completed within the active eligibility window; unused attempts expire when the window closes.</dd>
-          </div>
-        </dl>
+          <p style="margin-top: 10px; font-size: 13px; color: var(--gimi-gray);">GIMI recommends running the proctor platform's system check at least 24 hours before your scheduled examination to confirm all requirements are met.</p>
+        </div>
+
+        <div class="block-header"><h4>Retake Policy</h4></div>
+        <div class="block-body">
+          <p>Candidates are permitted up to <strong>3 attempts per application</strong>. Attempt 1 is included in the original examination fee. Attempts 2 and 3 are each subject to a retake fee of <strong>USD $260 per attempt</strong>. Each attempt draws different questions from the item bank; no candidate sees the same questions on consecutive attempts. After 3 unsuccessful attempts, the candidate must wait <strong>12 months</strong> before submitting a new application. All attempts must be completed within the active eligibility window; unused attempts expire when the window closes.</p>
+        </div>
       </article>
 
       <article class="subsection-card">
@@ -1121,18 +1236,22 @@
       <article class="subsection-card">
         <span class="subsection-number">3.1</span>
         <h3 id="maintain-recert">Recertification &amp; CPE</h3>
-        <dl>
-          <div class="info-pair">
-            <dt>Certification Cycle</dt>
-            <dd>3 years from the effective date of certification</dd>
+
+        <div class="stat-hero-grid">
+          <div class="stat-hero">
+            <div class="sh-label">Certification Cycle</div>
+            <div class="sh-value">3 Years</div>
+            <p class="sh-sub">From the effective date of certification.</p>
           </div>
-          <div class="info-pair">
-            <dt>CPE Requirement</dt>
-            <dd>60 CPE units must be completed and documented over the 3-year certification cycle. One CPE unit equals 50 contact minutes of structured instruction or equivalent professional activity.</dd>
+          <div class="stat-hero">
+            <div class="sh-label">CPE Requirement</div>
+            <div class="sh-value">60 CPE Units</div>
+            <p class="sh-sub">One CPE unit equals 50 contact minutes of structured instruction or equivalent professional activity.</p>
           </div>
-          <div class="info-pair">
-            <dt>What Counts as CPE</dt>
-            <dd>
+        </div>
+
+        <div class="block-header"><h4>What Counts as CPE</h4></div>
+        <div class="block-body">
               <div>
                 <p>Qualifying CPE activities include:</p>
                 <div class="cpe-flex">
@@ -1144,13 +1263,12 @@
                   <div class="mini-card"><h4>Publishing</h4><p>Publication of articles, research, or professional content in innovation management</p></div>
                   <div class="mini-card"><h4>Teaching</h4><p>Teaching or facilitating innovation-related courses or workshops</p></div>
                 </div>
-                <p style="margin-top:10px;"><strong>Evidence required:</strong> Each CPE submission must include the attendee name, course or event title, sponsoring organization, number of credits, and date. Registrations, invoices, and course syllabi alone are not sufficient. GIMI conducts an annual sample audit of CPE records.</p>
+                <p style="margin-top:14px;"><strong>Evidence required.</strong> Each CPE submission must include the attendee name, course or event title, sponsoring organization, number of credits, and date. Registrations, invoices, and course syllabi alone are not sufficient. GIMI conducts an annual sample audit of CPE records.</p>
               </div>
-            </dd>
-          </div>
-          <div class="info-pair">
-            <dt>Submission</dt>
-            <dd>
+        </div>
+
+        <div class="block-header"><h4>Submission</h4></div>
+        <div class="block-body">
               <div>
                 <ol style="padding-left: 18px; line-height: 1.9;">
                   <li>Log into your GIMI portal at least 60 days before your expiry date</li>
@@ -1162,13 +1280,12 @@
                   <a href="#" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Access Recertification Portal</a>
                 </p>
               </div>
-            </dd>
-          </div>
-          <div class="info-pair">
-            <dt>Missed Window</dt>
-            <dd>There is no reinstatement window. If a certification lapses, the certified person must submit a new application and pass the examination again. There is no pathway to recertify without re-examination once the certification has expired.</dd>
-          </div>
-        </dl>
+        </div>
+
+        <div class="block-header"><h4>Missed Window</h4></div>
+        <div class="block-body">
+          <p>There is no reinstatement window. If a certification lapses, the certified person must submit a new application and pass the examination again. There is no pathway to recertify without re-examination once the certification has expired.</p>
+        </div>
       </article>
 
       <article class="subsection-card">
@@ -1196,12 +1313,20 @@
         <p style="margin-top: 12px;">
           <a href="GIMI_Code_of_Conduct.pdf" download class="btn btn-primary" style="display:inline-block; text-decoration:none; font-size:13px;">Download Code of Conduct (PDF)</a>
         </p>
-        <p style="margin-top: 16px;"><strong>Suspension &amp; withdrawal:</strong></p>
-        <div>
-          <p><strong>Suspension grounds:</strong> failure to recertify by the expiry date, breach of the Code of Conduct, or submission of false information in the certification application. Minimum 6 months, maximum 2 years.</p>
-          <p style="margin-top:8px;"><strong>Withdrawal grounds:</strong> failure to resolve the cause of suspension within the notified period, serious or repeated Code of Conduct breach, or fraudulent examination practices.</p>
-          <p style="margin-top:8px;">The certified person is notified in writing of the action, the reasons, the duration, and the right to appeal. All suspensions and withdrawals are reflected in the public certified-person registry. Withdrawal decisions may be contested through the GIMI appeals process (see Section 6).</p>
+        <div class="block-header" style="margin-top: 28px;"><h4>Suspension &amp; Withdrawal</h4></div>
+        <div class="grounds-grid">
+          <div class="grounds-card">
+            <h5>Suspension</h5>
+            <div class="gc-title">Grounds &amp; Duration</div>
+            <p>Failure to recertify by the expiry date, breach of the Code of Conduct, or submission of false information in the certification application. <strong>Minimum 6 months, maximum 2 years.</strong></p>
+          </div>
+          <div class="grounds-card">
+            <h5>Withdrawal</h5>
+            <div class="gc-title">Grounds</div>
+            <p>Failure to resolve the cause of suspension within the notified period, serious or repeated Code of Conduct breach, or fraudulent examination practices.</p>
+          </div>
         </div>
+        <p style="margin-top: 14px; font-size: 14px; color: var(--gimi-gray); line-height: 1.7;">The certified person is notified in writing of the action, the reasons, the duration, and the right to appeal. All suspensions and withdrawals are reflected in the public certified-person registry. Withdrawal decisions may be contested through the GIMI appeals process (see Section 6).</p>
       </article>
 
     </div>
