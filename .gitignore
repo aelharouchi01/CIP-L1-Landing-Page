@@ -1,0 +1,8 @@
+# Local deployment bundle — not needed in repo
+gimi-site.zip
+gimi-site/
+
+# OS junk
+Thumbs.db
+.DS_Store
+desktop.ini
