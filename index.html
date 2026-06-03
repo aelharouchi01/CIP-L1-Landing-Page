@@ -748,6 +748,21 @@
     border: 1px solid #E5E7EB;
     border-radius: 8px;
     padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Tech requirements + fees: uniform tall tiles */
+  .spec-grid .spec-card { min-height: 106px; }
+  /* Two-column data card grid (accreditation, contact) */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .data-grid .spec-card { min-height: 84px; }
+  @media (max-width: 600px) {
+    .data-grid { grid-template-columns: 1fr; }
   }
   .spec-card .spec-label {
     font-size: 10.5px;
@@ -950,7 +965,7 @@
   <div class="hero-inner">
     <span class="hero-eyebrow">CIP-1 &nbsp;·&nbsp; ISO/IEC 17024 Accredited Certification</span>
     <h1>Certified Innovation Professional <span>Level 1: Associate</span></h1>
-    <p style="font-size: 17px; font-weight: 500; color: var(--gimi-navy); margin-bottom: 16px;">Professionals learn to generate and apply breakthrough ideas — the only innovation management course accredited as ISO/IEC 17024.</p>
+    <p style="font-size: 17px; font-weight: 500; color: var(--gimi-navy); margin-bottom: 16px;">Professionals learn to generate and apply breakthrough ideas. This is the only innovation management course accredited as ISO/IEC 17024.</p>
     <p>The Certified Innovation Professional Level 1: Associate certification is designed for individuals who want to understand business innovation and the processes needed to generate breakthrough ideas. Participants learn idea generation tools and how to apply them to create more and better ideas for their organizations.</p>
     <div class="hero-ctas">
       <a href="https://www.giminstitute.org/product/certified-innovation-associate-level-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Apply Now</a>
@@ -979,64 +994,40 @@
       <article class="subsection-card">
         <span class="subsection-number">1.2</span>
         <h3 id="about-accreditation">Accreditation Status</h3>
-        <dl>
-          <div class="info-pair">
-            <dt>Standard</dt>
-            <dd>ISO/IEC 17024:2012, Conformity assessment for bodies operating certification of persons</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Accreditation Body</dt>
-            <dd>International Accreditation Service (IAS)</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Reference</dt>
-            <dd style="color:var(--gimi-gray); font-style:italic;">Pending — accreditation number will be published here once formally issued by IAS.</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Scope</dt>
-            <dd>Certified Innovation Professional Level 1: Associate</dd>
-          </div>
-        </dl>
+        <div class="data-grid">
+          <div class="spec-card"><div class="spec-label">Standard</div><div class="spec-value">ISO/IEC 17024:2012, Conformity assessment for bodies operating certification of persons</div></div>
+          <div class="spec-card"><div class="spec-label">Accreditation Body</div><div class="spec-value">International Accreditation Service (IAS)</div></div>
+          <div class="spec-card"><div class="spec-label">Reference</div><div class="spec-value" style="color:var(--gimi-gray); font-style:italic;">Pending. The accreditation number will be published here once formally issued by IAS.</div></div>
+          <div class="spec-card"><div class="spec-label">Scope</div><div class="spec-value">Certified Innovation Professional Level 1: Associate</div></div>
+        </div>
       </article>
 
       <article class="subsection-card">
         <span class="subsection-number">1.3</span>
         <h3 id="about-contact">Public Information &amp; Contact</h3>
 
-        <p style="font-size: 11px; font-weight: 700; color: var(--gimi-teal); letter-spacing: 1.2px; margin-bottom: 8px;">ISO/IEC 17024:2012 CLAUSE 7.2</p>
-        <p style="margin-bottom: 12px;">In conformity with ISO/IEC 17024:2012 Clause 7.2, GIMI publishes the following information without request:</p>
+        <div class="block-header" style="margin-top: 0;"><h4>Public Information (ISO/IEC 17024 Clause 7.2)</h4></div>
+        <p class="block-body" style="margin-bottom: 12px;">In conformity with ISO/IEC 17024:2012 Clause 7.2, GIMI publishes the following information without request:</p>
         <ul style="margin: 0 0 16px 0; padding-left: 20px; line-height: 1.9; font-size: 14px;">
-          <li><strong>Scope of certification</strong> and general description of the certification process — <a href="#cert-scope" style="color:var(--gimi-teal);">Section 2.1</a>, <a href="#cert-exam" style="color:var(--gimi-teal);">2.2</a>, <a href="#cert-apply" style="color:var(--gimi-teal);">2.3</a></li>
-          <li><strong>All prerequisites and routes to certification</strong> — <a href="#cert-scope" style="color:var(--gimi-teal);">Section 2.1</a></li>
-          <li><strong>Examination process</strong> (format, blueprint, identity verification, technical requirements, retake policy) — <a href="#cert-exam" style="color:var(--gimi-teal);">Section 2.2</a></li>
-          <li><strong>Application process and fees</strong> — <a href="#cert-apply" style="color:var(--gimi-teal);">Section 2.3</a></li>
-          <li><strong>Recertification requirements</strong> (3-year cycle, 60 CPE units) — <a href="#maintain-recert" style="color:var(--gimi-teal);">Section 3.1</a></li>
-          <li><strong>Use of certificate and Code of Conduct</strong> — <a href="#maintain-conduct" style="color:var(--gimi-teal);">Section 3.2</a> (downloadable PDF)</li>
-          <li><strong>Impartiality statement</strong> — <a href="#imp-policy" style="color:var(--gimi-teal);">Section 4</a> (downloadable PDF)</li>
-          <li><strong>Public verification of certifications</strong> — <a href="#register" style="color:var(--gimi-teal);">Section 5</a></li>
-          <li><strong>Appeals and complaints handling process</strong> — <a href="#appeals-appeal" style="color:var(--gimi-teal);">Section 6</a></li>
+          <li><strong>Scope of certification</strong> and general description of the certification process: <a href="#cert-scope" style="color:var(--gimi-teal);">Section 2.1</a>, <a href="#cert-exam" style="color:var(--gimi-teal);">2.2</a>, <a href="#cert-apply" style="color:var(--gimi-teal);">2.3</a></li>
+          <li><strong>All prerequisites and routes to certification</strong>: <a href="#cert-scope" style="color:var(--gimi-teal);">Section 2.1</a></li>
+          <li><strong>Examination process</strong> (format, blueprint, identity verification, technical requirements, retake policy): <a href="#cert-exam" style="color:var(--gimi-teal);">Section 2.2</a></li>
+          <li><strong>Application process and fees</strong>: <a href="#cert-apply" style="color:var(--gimi-teal);">Section 2.3</a></li>
+          <li><strong>Recertification requirements</strong> (3-year cycle, 60 CPE units): <a href="#maintain-recert" style="color:var(--gimi-teal);">Section 3.1</a></li>
+          <li><strong>Use of certificate and Code of Conduct</strong>: <a href="#maintain-conduct" style="color:var(--gimi-teal);">Section 3.2</a> (downloadable PDF)</li>
+          <li><strong>Impartiality statement</strong>: <a href="#imp-policy" style="color:var(--gimi-teal);">Section 4</a> (downloadable PDF)</li>
+          <li><strong>Public verification of certifications</strong>: <a href="#register" style="color:var(--gimi-teal);">Section 5</a></li>
+          <li><strong>Appeals and complaints handling process</strong>: <a href="#appeals-appeal" style="color:var(--gimi-teal);">Section 6</a></li>
         </ul>
         <p style="font-size: 13px; color: var(--gimi-gray); margin-bottom: 20px;">All public information is reviewed annually and updated as needed. For corrections or to request additional information, contact <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>.</p>
 
-        <p style="font-size: 11px; font-weight: 700; color: var(--gimi-teal); letter-spacing: 1.2px; margin-bottom: 8px;">CONTACT</p>
-        <dl>
-          <div class="info-pair">
-            <dt>General Inquiries</dt>
-            <dd>info@giminstitute.org</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Phone</dt>
-            <dd>+1 (617) 714-5106</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Location</dt>
-            <dd>110 Cambridge Street, Cambridge, MA 02141, USA</dd>
-          </div>
-          <div class="info-pair">
-            <dt>For Accreditation Bodies &amp; Auditors</dt>
-            <dd><a href="mailto:erila.haska@ixl-center.net" style="color:var(--gimi-teal);">erila.haska@ixl-center.net</a></dd>
-          </div>
-        </dl>
+        <div class="block-header"><h4>Contact</h4></div>
+        <div class="data-grid">
+          <div class="spec-card"><div class="spec-label">General Inquiries</div><div class="spec-value"><a href="mailto:info@giminstitute.org" style="color:var(--gimi-teal);">info@giminstitute.org</a></div></div>
+          <div class="spec-card"><div class="spec-label">Phone</div><div class="spec-value">+1 (617) 945-2783</div></div>
+          <div class="spec-card"><div class="spec-label">Location</div><div class="spec-value">110 Cambridge Street, Cambridge, MA 02141, USA</div></div>
+          <div class="spec-card"><div class="spec-label">For Accreditation Bodies &amp; Auditors</div><div class="spec-value"><a href="mailto:erila.haska@ixl-center.net" style="color:var(--gimi-teal);">erila.haska@ixl-center.net</a></div></div>
+        </div>
       </article>
 
     </div>
@@ -1079,7 +1070,7 @@
         <h3 id="cert-scope">Scope &amp; Prerequisites</h3>
         <p><strong>Scope.</strong> This page covers the <strong>Certified Innovation Professional Level 1: Associate</strong> scheme (CIP-1) only. This certification validates foundational knowledge of innovation fundamentals, tools, techniques, and processes for breakthrough innovations. Other GIMI certifications are administered separately and fall outside the scope of this accredited program.</p>
 
-        <p style="margin-top: 18px; margin-bottom: 4px;"><strong>What you get and what you'll learn.</strong></p>
+        <div class="block-header"><h4>What You Get &amp; What You'll Learn</h4></div>
         <div class="mini-card-grid">
           <div class="mini-card">
             <h4>What's Included</h4>
@@ -1111,7 +1102,8 @@
           </div>
         </div>
 
-        <p style="margin-top: 20px;"><strong>Eligibility requirements.</strong> Candidates must satisfy at least one of the following routes to certification:</p>
+        <div class="block-header"><h4>Eligibility Requirements</h4></div>
+        <p class="block-body" style="margin-bottom: 10px;">Candidates must satisfy at least one of the following routes to certification:</p>
         <div class="route-grid">
           <div class="route-card"><strong>Route 1 · GIMI Training</strong>Completion of GIMI's Level 1 in-house training</div>
           <div class="route-card"><strong>Route 2 · CTP Training</strong>Completion of a Certified Training Provider's (CTP) authorized preparatory training</div>
@@ -1191,8 +1183,8 @@
       <article class="subsection-card">
         <span class="subsection-number">2.3</span>
         <h3 id="cert-apply">Apply &amp; Fees</h3>
-        <p><strong>How to apply:</strong></p>
-        <ol style="margin-top: 8px; padding-left: 20px; line-height: 1.9;">
+        <div class="block-header" style="margin-top: 14px;"><h4>How to Apply</h4></div>
+        <ol class="block-body" style="margin-top: 8px; padding-left: 20px; line-height: 1.9;">
           <li>Complete the online application via the GIMI website</li>
           <li>Review and digitally sign the GIMI Candidate Agreement</li>
           <li>Receive notification of your eligibility outcome within <strong>10 business days</strong></li>
@@ -1204,20 +1196,12 @@
         <p style="margin-top: 16px;">
           <a href="https://www.giminstitute.org/product/certified-innovation-associate-level-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Apply Now</a>
         </p>
-        <dl style="margin-top: 16px;">
-          <div class="info-pair">
-            <dt>Examination Fee</dt>
-            <dd>USD $560 (first attempt, includes one examination sitting)</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Payment</dt>
-            <dd>Paid directly to GIMI</dd>
-          </div>
-          <div class="info-pair">
-            <dt>Certificate Issued</dt>
-            <dd>"Certified Innovation Professional Level 1: Associate" (official IAS-registered scheme name)</dd>
-          </div>
-        </dl>
+        <div class="block-header"><h4>Fees &amp; Certificate</h4></div>
+        <div class="spec-grid">
+          <div class="spec-card"><div class="spec-label">Examination Fee</div><div class="spec-value">USD $560 (first attempt, includes one examination sitting)</div></div>
+          <div class="spec-card"><div class="spec-label">Payment</div><div class="spec-value">Paid directly to GIMI</div></div>
+          <div class="spec-card"><div class="spec-label">Certificate Issued</div><div class="spec-value">"Certified Innovation Professional Level 1: Associate" (official IAS-registered scheme name)</div></div>
+        </div>
       </article>
 
     </div>
@@ -1291,25 +1275,29 @@
       <article class="subsection-card">
         <span class="subsection-number">3.2</span>
         <h3 id="maintain-conduct">Use of Certificate &amp; Code of Conduct</h3>
-        <p><strong>Rules for use:</strong></p>
-                <div>
-          <p><strong>Permitted:</strong></p>
-          <ul style="margin-top:8px; padding-left:18px;">
-            <li>Using the designation "Certified Innovation Professional Level 1: Associate" on business cards, stationery, and professional profiles where your name is prominent</li>
-            <li>Displaying the GIMI digital badge on professional platforms such as LinkedIn and email signatures</li>
-          </ul>
-          <p style="margin-top:12px;"><strong>Not permitted:</strong></p>
-          <ul style="margin-top:8px; padding-left:18px;">
-            <li>Any use that harms or misrepresents GIMI's reputation</li>
-            <li>Implying GIMI endorsement of any product, service, or organization</li>
-            <li>Claiming false affiliation with GIMI beyond the scope of your certification</li>
-            <li>Altering, reproducing, or transferring the certificate or digital badge in any form</li>
-            <li>Continuing to use the designation after expiry, suspension, or withdrawal</li>
-          </ul>
-          <p style="margin-top:12px;">Certificates and marks are the exclusive property of GIMI and are non-transferable. Upon suspension or withdrawal, use must cease immediately and the certificate must be returned. Ordinary misuse is subject to written notice; gross violations result in immediate revocation. Continued unauthorized use may result in legal action.</p>
+        <div class="block-header"><h4>Rules for Use</h4></div>
+        <div class="grounds-grid">
+          <div class="grounds-card">
+            <h5>Permitted</h5>
+            <ul style="margin:6px 0 0; padding-left:18px; font-size:14px; line-height:1.65; color:var(--gimi-text);">
+              <li>Using the designation "Certified Innovation Professional Level 1: Associate" on business cards, stationery, and professional profiles where your name is prominent</li>
+              <li>Displaying the GIMI digital badge on professional platforms such as LinkedIn and email signatures</li>
+            </ul>
+          </div>
+          <div class="grounds-card">
+            <h5>Not Permitted</h5>
+            <ul style="margin:6px 0 0; padding-left:18px; font-size:14px; line-height:1.65; color:var(--gimi-text);">
+              <li>Any use that harms or misrepresents GIMI's reputation</li>
+              <li>Implying GIMI endorsement of any product, service, or organization</li>
+              <li>Claiming false affiliation with GIMI beyond the scope of your certification</li>
+              <li>Altering, reproducing, or transferring the certificate or digital badge in any form</li>
+              <li>Continuing to use the designation after expiry, suspension, or withdrawal</li>
+            </ul>
+          </div>
         </div>
-        <p style="margin-top: 16px;"><strong>Code of conduct:</strong></p>
-        <p>The Code of Conduct is the binding behavioral standard for every GIMI certified person throughout the certification cycle. It covers core principles of integrity, competence, impartiality, confidentiality, and cooperation with GIMI oversight. Acceptance is a condition of holding certification.</p>
+        <p style="margin-top:14px; font-size:14px; color:var(--gimi-gray); line-height:1.7;">Certificates and marks are the exclusive property of GIMI and are non-transferable. Upon suspension or withdrawal, use must cease immediately and the certificate must be returned. Ordinary misuse is subject to written notice; gross violations result in immediate revocation. Continued unauthorized use may result in legal action.</p>
+        <div class="block-header"><h4>Code of Conduct</h4></div>
+        <p class="block-body">The Code of Conduct is the binding behavioral standard for every GIMI certified person throughout the certification cycle. It covers core principles of integrity, competence, impartiality, confidentiality, and cooperation with GIMI oversight. Acceptance is a condition of holding certification.</p>
         <p style="margin-top: 12px;">
           <a href="GIMI_Code_of_Conduct.pdf" download class="btn btn-primary" style="display:inline-block; text-decoration:none; font-size:13px;">Download Code of Conduct (PDF)</a>
         </p>
@@ -1350,7 +1338,7 @@
       <article class="subsection-card">
         <span class="subsection-number">4.1</span>
         <h3 id="imp-policy-detail">Impartiality Policy</h3>
-        <p><strong>Top management commitment:</strong></p>
+        <div class="block-header" style="margin-top: 14px;"><h4>Top Management Commitment</h4></div>
         <div style="background:#f8fafb; border-left:3px solid var(--gimi-teal); padding:16px 18px; border-radius:4px; font-size:14px; line-height:1.75;">
           <p>The Global Innovation Management Institute (GIMI) ensures that its operations safeguard objectivity and impartiality in delivering its certification programs in a fair and non-discriminatory manner.</p>
           <p style="margin-top:10px;">GIMI policies and procedures are designed to be non-discriminatory and are administered with fairness and equity. GIMI makes its certification programs available to all applicants who meet the publicly available criteria for certification. Certification is not conditional upon membership in any association, group, or organization. However, certification eligibility may be restricted where there is an unacceptable risk to GIMI's integrity, such as evidence of fraudulent behavior, concealment of information, or provision of false information during the application or assessment process.</p>
@@ -1361,14 +1349,14 @@
           <p style="margin-top:16px;"><a href="GIMI_Impartiality_Statement.pdf" download class="btn btn-primary" style="display:inline-block; text-decoration:none; font-size:13px;">Download Signed Impartiality Statement (PDF)</a></p>
         </div>
 
-        <p style="margin-top: 16px;"><strong>Financial independence:</strong></p>
-        <p style="margin-top: 8px;">All Certified Innovation Professional Level 1: Associate certification fees are paid directly to GIMI. Fees are not collected by or channelled through training partners. The public fee schedule is available in the Apply &amp; Fees section above.</p>
+        <div class="block-header"><h4>Financial Independence</h4></div>
+        <p class="block-body">All Certified Innovation Professional Level 1: Associate certification fees are paid directly to GIMI. Fees are not collected by or channelled through training partners. The public fee schedule is available in the Apply &amp; Fees section above.</p>
 
-        <p style="margin-top: 16px;"><strong>Independence of certification decisions:</strong></p>
-        <p style="margin-top: 8px;">Personnel who make certification decisions for the Certified Innovation Professional Level 1: Associate scheme have not participated in training or examining that specific candidate.</p>
+        <div class="block-header"><h4>Independence of Certification Decisions</h4></div>
+        <p class="block-body">Personnel who make certification decisions for the Certified Innovation Professional Level 1: Associate scheme have not participated in training or examining that specific candidate.</p>
 
-        <p style="margin-top: 16px;"><strong>Report an impartiality concern:</strong></p>
-        <p>To report an impartiality concern related to the Certified Innovation Professional Level 1: Associate certification program, contact: <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a></p>
+        <div class="block-header"><h4>Report an Impartiality Concern</h4></div>
+        <p class="block-body">To report an impartiality concern related to the Certified Innovation Professional Level 1: Associate certification program, contact: <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a></p>
         <p style="margin-top:8px;">All concerns are investigated by personnel independent of the reported activity. Acknowledgment within 5 business days of receipt.</p>
       </article>
 
@@ -1447,7 +1435,7 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3EbqrCvgdRyrkBlukayCRyNOIiZ_u41uD_RYJSjpwKwme-A/viewform" target="_blank" class="btn btn-primary">Submit an Appeal</a>
         <div style="margin-top: 16px; font-size: 13px; line-height: 1.8;">
           <p><strong>Who can submit:</strong> Any applicant, candidate, or certified person seeking reconsideration of a certification decision, including denial of certification or recertification, suspension, withdrawal, or reduction of scope.</p>
-          <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Appeals Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway — GIMI will classify and route it.</p>
+          <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Appeals Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway, and GIMI will classify and route it.</p>
           <p style="margin-top: 10px;"><strong>Deadline:</strong> Within 30 calendar days of receipt of the decision being appealed.</p>
           <p style="margin-top: 10px;"><strong>Timelines:</strong><br>
           Acknowledgment of receipt: within <strong>10 business days</strong><br>
@@ -1482,7 +1470,7 @@
         <a href="https://docs.google.com/forms/d/1om6fTh11PDNmT2F4lt6ivsy7F3wVCwmT7fqXRfVs0_Y/" target="_blank" class="btn btn-primary">Submit a Complaint</a>
         <div style="margin-top: 16px; font-size: 13px; line-height: 1.8;">
           <p><strong>Who can submit:</strong> Any person or organization regarding GIMI's certification activities or the conduct of a certified person.</p>
-          <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Complaint Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway — GIMI will classify and route it.</p>
+          <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Complaint Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway, and GIMI will classify and route it.</p>
           <p style="margin-top: 10px;"><strong>When to submit:</strong> Complaints may be submitted at any time relevant to the matter complained of.</p>
           <p style="margin-top: 10px;"><strong>Timelines:</strong><br>
           Acknowledgment of receipt: within <strong>48 hours</strong><br>
