@@ -642,27 +642,70 @@
   .mini-card ul li { margin-bottom: 4px; }
   .mini-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--gimi-text); }
 
-  /* CPE flex grid (7 cards: 4 on top, 3 centered below) */
+  /* CPE grid (7 cards: 4 + 3, left-aligned, uniform tiles) */
   .cpe-flex {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
-    justify-content: center;
     margin-top: 10px;
   }
-  .cpe-flex .mini-card {
-    flex: 1 1 calc(25% - 14px);
-    min-width: 220px;
-    max-width: calc(25% - 14px);
+  .cpe-flex .mini-card { min-height: 104px; }
+  @media (max-width: 1100px) { .cpe-flex { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 800px) { .cpe-flex { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 500px) { .cpe-flex { grid-template-columns: 1fr; } }
+
+  /* Spec table (system requirements) */
+  .spec-table {
+    margin-top: 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
   }
-  @media (max-width: 1100px) {
-    .cpe-flex .mini-card { flex: 1 1 calc(33.333% - 14px); max-width: calc(33.333% - 14px); }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    border-bottom: 1px solid #E5E7EB;
   }
-  @media (max-width: 800px) {
-    .cpe-flex .mini-card { flex: 1 1 calc(50% - 14px); max-width: calc(50% - 14px); }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row:nth-child(odd) { background: #F8FAFB; }
+  .spec-row .sr-key {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 14px 18px;
+    align-self: center;
   }
-  @media (max-width: 500px) {
-    .cpe-flex .mini-card { flex: 1 1 100%; max-width: 100%; }
+  .spec-row .sr-val {
+    font-size: 14px;
+    color: var(--gimi-text);
+    line-height: 1.55;
+    padding: 13px 18px;
+  }
+  @media (max-width: 640px) {
+    .spec-row { grid-template-columns: 1fr; }
+    .spec-row .sr-key { padding-bottom: 0; }
+    .spec-row .sr-val { padding-top: 4px; }
+  }
+
+  /* Timeline inset box (appeals / complaints) */
+  .timeline-box {
+    background: #EAF7F8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--gimi-text);
+  }
+  .timeline-box .tl-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
   }
 
   /* Route cards (5 eligibility routes — forced 5-up on wide, 3-up on tablet, 1-up on mobile) */
@@ -1160,16 +1203,16 @@
         <div class="block-body">
           <p>The examination is administered entirely online. Candidates must use a personal computer (desktop or laptop). Tablets, smartphones, and Chromebooks are not permitted.</p>
               <p style="margin-top: 10px;"><strong>Minimum system requirements:</strong></p>
-              <div class="spec-grid">
-                <div class="spec-card"><div class="spec-label">Operating System</div><div class="spec-value">Windows 10 or later; macOS 11 (Big Sur) or later</div></div>
-                <div class="spec-card"><div class="spec-label">Processor</div><div class="spec-value">Intel Core i3 or AMD equivalent (2.0 GHz or faster)</div></div>
-                <div class="spec-card"><div class="spec-label">RAM</div><div class="spec-value">4 GB minimum (8 GB recommended)</div></div>
-                <div class="spec-card"><div class="spec-label">Display</div><div class="spec-value">1280 x 720 resolution minimum; external monitor permitted</div></div>
-                <div class="spec-card"><div class="spec-label">Browser</div><div class="spec-value">Google Chrome (latest version) or Mozilla Firefox (latest version); no browser extensions active during the exam</div></div>
-                <div class="spec-card"><div class="spec-label">Webcam</div><div class="spec-value">Built-in or external webcam capable of 720p minimum</div></div>
-                <div class="spec-card"><div class="spec-label">Microphone</div><div class="spec-value">Built-in or external microphone required</div></div>
-                <div class="spec-card"><div class="spec-label">Internet Connection</div><div class="spec-value">Stable broadband connection of at least 5 Mbps download and 2 Mbps upload; wired (Ethernet) connection strongly preferred over Wi-Fi</div></div>
-                <div class="spec-card"><div class="spec-label">Environment</div><div class="spec-value">Private, quiet room; no other persons present; desk surface must be visible to webcam</div></div>
+              <div class="spec-table">
+                <div class="spec-row"><div class="sr-key">Operating System</div><div class="sr-val">Windows 10 or later; macOS 11 (Big Sur) or later</div></div>
+                <div class="spec-row"><div class="sr-key">Processor</div><div class="sr-val">Intel Core i3 or AMD equivalent (2.0 GHz or faster)</div></div>
+                <div class="spec-row"><div class="sr-key">RAM</div><div class="sr-val">4 GB minimum (8 GB recommended)</div></div>
+                <div class="spec-row"><div class="sr-key">Display</div><div class="sr-val">1280 x 720 resolution minimum; external monitor permitted</div></div>
+                <div class="spec-row"><div class="sr-key">Browser</div><div class="sr-val">Google Chrome (latest version) or Mozilla Firefox (latest version); no browser extensions active during the exam</div></div>
+                <div class="spec-row"><div class="sr-key">Webcam</div><div class="sr-val">Built-in or external webcam capable of 720p minimum</div></div>
+                <div class="spec-row"><div class="sr-key">Microphone</div><div class="sr-val">Built-in or external microphone required</div></div>
+                <div class="spec-row"><div class="sr-key">Internet Connection</div><div class="sr-val">Stable broadband connection of at least 5 Mbps download and 2 Mbps upload; wired (Ethernet) connection strongly preferred over Wi-Fi</div></div>
+                <div class="spec-row"><div class="sr-key">Environment</div><div class="sr-val">Private, quiet room; no other persons present; desk surface must be visible to webcam</div></div>
               </div>
           <p style="margin-top: 10px; font-size: 13px; color: var(--gimi-gray);">GIMI recommends running the proctor platform's system check at least 24 hours before your scheduled examination to confirm all requirements are met.</p>
         </div>
@@ -1418,34 +1461,22 @@
         <span class="subsection-number">6.1</span>
         <h3 id="appeals-appeal">File an Appeal</h3>
         <p>If you wish to contest a certification decision: eligibility, exam result, suspension, or withdrawal.</p>
-        <ul style="list-style:none; padding:0; margin-bottom: 20px;">
-          <li style="padding: 4px 0 4px 24px; position: relative; font-size: 14px;">
-            <span style="position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gimi-teal);"></span>
-            Independent review panel
-          </li>
-          <li style="padding: 4px 0 4px 24px; position: relative; font-size: 14px;">
-            <span style="position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gimi-teal);"></span>
-            Acknowledgment within published timeline
-          </li>
-          <li style="padding: 4px 0 4px 24px; position: relative; font-size: 14px;">
-            <span style="position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gimi-teal);"></span>
-            Right to escalate
-          </li>
-        </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3EbqrCvgdRyrkBlukayCRyNOIiZ_u41uD_RYJSjpwKwme-A/viewform" target="_blank" class="btn btn-primary">Submit an Appeal</a>
-        <div style="margin-top: 16px; font-size: 13px; line-height: 1.8;">
+        <div style="margin-top: 16px; font-size: 13px; line-height: 1.75;">
           <p><strong>Who can submit:</strong> Any applicant, candidate, or certified person seeking reconsideration of a certification decision, including denial of certification or recertification, suspension, withdrawal, or reduction of scope.</p>
           <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Appeals Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway, and GIMI will classify and route it.</p>
           <p style="margin-top: 10px;"><strong>Deadline:</strong> Within 30 calendar days of receipt of the decision being appealed.</p>
-          <p style="margin-top: 10px;"><strong>Timelines:</strong><br>
-          Acknowledgment of receipt: within <strong>10 business days</strong><br>
-          Decision communicated: within <strong>60 calendar days</strong> of acknowledgment<br>
-          Progress updates provided at each milestone<br>
-          Formal closure notice provided in writing</p>
+          <div class="timeline-box">
+            <div class="tl-title">Timelines</div>
+            Acknowledgment of receipt: within <strong>10 business days</strong><br>
+            Decision communicated: within <strong>60 calendar days</strong> of acknowledgment<br>
+            Progress updates provided at each milestone<br>
+            Formal closure notice provided in writing
+          </div>
           <p style="margin-top: 10px;"><strong>Handling:</strong> Appeals are determined by the GIMI Appeals Board, which is independent of the original decision. Any Appeals Board member involved in the underlying decision is recused. All appeals are handled in strict confidence; information is shared only on a need-to-know basis.</p>
           <p style="margin-top: 10px;"><strong>Outcomes:</strong> Upheld (decision changed), denied (decision stands), or conditional (specific further requirements). The decision and reasons are notified in writing. Submission and resolution of an appeal shall not result in any discriminatory action against the submitter.</p>
           <p style="margin-top: 10px;"><strong>No fee.</strong> GIMI does not charge any fee for the submission, handling, or determination of appeals.</p>
         </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3EbqrCvgdRyrkBlukayCRyNOIiZ_u41uD_RYJSjpwKwme-A/viewform" target="_blank" class="btn btn-primary" style="margin-top: 18px;">Submit an Appeal</a>
       </article>
 
       <article class="recourse-card">
@@ -1453,35 +1484,23 @@
         <span class="subsection-number">6.2</span>
         <h3 id="appeals-complaint">File a Complaint</h3>
         <p>If you wish to raise concerns about service, conduct, process, or the behavior of a certified person.</p>
-        <ul style="list-style:none; padding:0; margin-bottom: 20px;">
-          <li style="padding: 4px 0 4px 24px; position: relative; font-size: 14px;">
-            <span style="position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gimi-teal);"></span>
-            Confidentiality protections
-          </li>
-          <li style="padding: 4px 0 4px 24px; position: relative; font-size: 14px;">
-            <span style="position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gimi-teal);"></span>
-            Acknowledgment within published timeline
-          </li>
-          <li style="padding: 4px 0 4px 24px; position: relative; font-size: 14px;">
-            <span style="position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gimi-teal);"></span>
-            Outcome communicated to complainant
-          </li>
-        </ul>
-        <a href="https://docs.google.com/forms/d/1om6fTh11PDNmT2F4lt6ivsy7F3wVCwmT7fqXRfVs0_Y/" target="_blank" class="btn btn-primary">Submit a Complaint</a>
-        <div style="margin-top: 16px; font-size: 13px; line-height: 1.8;">
+        <div style="margin-top: 16px; font-size: 13px; line-height: 1.75;">
           <p><strong>Who can submit:</strong> Any person or organization regarding GIMI's certification activities or the conduct of a certified person.</p>
           <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Complaint Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway, and GIMI will classify and route it.</p>
           <p style="margin-top: 10px;"><strong>When to submit:</strong> Complaints may be submitted at any time relevant to the matter complained of.</p>
-          <p style="margin-top: 10px;"><strong>Timelines:</strong><br>
-          Acknowledgment of receipt: within <strong>48 hours</strong><br>
-          Initial review completed: within <strong>5 business days</strong><br>
-          Investigation completed: typically within <strong>15 business days</strong><br>
-          Progress updates provided at each milestone<br>
-          Formal closure notice provided in writing</p>
+          <div class="timeline-box">
+            <div class="tl-title">Timelines</div>
+            Acknowledgment of receipt: within <strong>48 hours</strong><br>
+            Initial review completed: within <strong>5 business days</strong><br>
+            Investigation completed: typically within <strong>15 business days</strong><br>
+            Progress updates provided at each milestone<br>
+            Formal closure notice provided in writing
+          </div>
           <p style="margin-top: 10px;"><strong>Handling:</strong> Complaints are handled by personnel independent of the matter complained of. Where the complaint concerns the Certification Director, the CEO assumes handling responsibility. Where the complaint concerns the CEO, the matter is referred to the Advisory Commission. All complaints are handled in strict confidence.</p>
           <p style="margin-top: 10px;"><strong>Outcomes:</strong> Written outcome including the resolution and any corrective actions. Where the complainant remains dissatisfied, the option of escalation to an independent review is available. Submission and resolution of a complaint shall not result in any discriminatory action against the submitter.</p>
           <p style="margin-top: 10px;"><strong>No fee.</strong> GIMI does not charge any fee for the submission, handling, or determination of complaints.</p>
         </div>
+        <a href="https://docs.google.com/forms/d/1om6fTh11PDNmT2F4lt6ivsy7F3wVCwmT7fqXRfVs0_Y/" target="_blank" class="btn btn-primary" style="margin-top: 18px;">Submit a Complaint</a>
       </article>
 
     </div>
