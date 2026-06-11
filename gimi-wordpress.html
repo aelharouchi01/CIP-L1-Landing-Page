@@ -1,0 +1,1529 @@
+<style>
+body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }
+html { overflow-x: hidden !important; }
+* { box-sizing: border-box !important; }
+.elementor-widget-container { padding: 0 !important; margin: 0 !important; }
+.elementor-section { padding: 0 !important; margin: 0 !important; }
+.elementor-container { max-width: 100% !important; padding: 0 !important; }
+
+  /* ---------- Brand tokens (extracted from GIMI logo, confirmed against giminstitute.org) ---------- */
+  :root {
+    --gimi-teal: #36828A;        /* primary teal (logo pixel median) — WCAG AA with white (5.1:1) */
+    --gimi-teal-dark: #355E71;   /* dark teal for hover and deep sections */
+    --gimi-teal-light: #EAF3F4;
+    --gimi-yellow: #E2DC46;      /* yellow-green globe ring */
+    --gimi-pink: #A43C7C;        /* pink globe ring */
+    --gimi-orange: #DE8E3D;      /* orange globe ring */
+    --gimi-navy: #2c4e5e;        /* deep dark for footer and stat strip */
+    --gimi-navy-dark: #26263f;
+    --gimi-gray: #6B7280;
+    --gimi-gray-light: #F0F4F6;
+    --gimi-text: #111111;
+    --gimi-border: #E5E7EB;
+    --gimi-white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Calibri', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--gimi-text);
+    background: var(--gimi-white);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    background: var(--gimi-teal-dark);
+    color: var(--gimi-white);
+    padding: 8px 0;
+    font-size: 13px;
+  }
+  .topbar-inner {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 18px;
+  }
+  .topbar a {
+    color: var(--gimi-white);
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  .topbar a:hover { opacity: 1; }
+
+  /* ---------- Main nav ---------- */
+  .nav {
+    background: var(--gimi-navy);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: none;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--gimi-white);
+  }
+  .logo img { display: block; height: 72px; width: auto; }
+
+  .nav-tabs {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-tabs a {
+    color: rgba(255,255,255,0.88);
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-tabs a:hover,
+  .nav-tabs li:hover > a {
+    background: rgba(255,255,255,0.12);
+    color: var(--gimi-white);
+  }
+  .nav-tabs a.active {
+    background: var(--gimi-teal);
+    color: var(--gimi-white);
+  }
+
+  /* ---------- Dropdown nav ---------- */
+  .nav-tabs { position: relative; }
+  .nav-tabs li { position: relative; }
+  .nav-tabs li .dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: var(--gimi-white);
+    border: 1px solid var(--gimi-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    min-width: 220px;
+    z-index: 200;
+    padding: 6px 0;
+  }
+  .nav-tabs li:hover .dropdown { display: block; }
+  .nav-tabs li .dropdown a {
+    display: block;
+    padding: 9px 18px;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--gimi-text);
+    border-radius: 0;
+    background: none;
+  }
+  .nav-tabs li .dropdown a:hover {
+    background: var(--gimi-teal-light);
+    color: var(--gimi-teal);
+  }
+  .nav-tabs > li > a::after {
+    content: " ▾";
+    font-size: 10px;
+    opacity: 0.7;
+    vertical-align: middle;
+  }
+  /* last two tabs have no subsections — hide caret */
+  .nav-tabs li.no-sub > a::after { content: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: #ffffff;
+    padding: 80px 0px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--gimi-white);
+    color: var(--gimi-teal);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,108,100,0.08);
+  }
+  .hero h1 {
+    font-size: 52px;
+    line-height: 1.15;
+    color: var(--gimi-navy);
+    font-weight: 700;
+    max-width: 900px;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--gimi-teal); }
+  .hero p {
+    font-size: 19px;
+    color: #111111;
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--gimi-teal);
+    color: var(--gimi-white);
+  }
+  .btn-primary:hover {
+    background: var(--gimi-teal-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(54,130,138,0.25);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--gimi-teal);
+    border: 2px solid var(--gimi-teal);
+  }
+  .btn-outline:hover {
+    background: var(--gimi-teal);
+    color: var(--gimi-white);
+  }
+
+  /* ---------- Section base ---------- */
+  section.tab-section {
+    padding: 64px 0px;
+    scroll-margin-top: 90px;
+  }
+  section.tab-section.alt { background: #ffffff; }
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .section-eyebrow {
+    color: var(--gimi-teal);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 40px;
+    color: var(--gimi-navy);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .section-lead {
+    font-size: 18px;
+    color: #111111;
+    max-width: 720px;
+    margin-bottom: 56px;
+  }
+
+  /* ---------- Card grid (for subsections) ---------- */
+  .subsection-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .subsection-card {
+    background: var(--gimi-white);
+    border: 1px solid var(--gimi-border);
+    border-radius: 16px;
+    padding: 36px;
+    transition: all 0.25s;
+    position: relative;
+  }
+  section.alt .subsection-card { background: var(--gimi-white); }
+  .subsection-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(27,31,59,0.08);
+    border-color: var(--gimi-teal-light);
+  }
+  .subsection-number {
+    display: inline-block;
+    background: var(--gimi-teal-light);
+    color: var(--gimi-teal);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .subsection-card h3 {
+    font-size: 22px;
+    color: var(--gimi-navy);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .subsection-card .placeholder {
+    color: #111111;
+    font-style: italic;
+    font-size: 14px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-left: 3px solid var(--gimi-yellow);
+    border-radius: 4px;
+    margin-top: 12px;
+  }
+  .subsection-card p { color: #111111; font-size: 15px; }
+  .subsection-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+  }
+  .subsection-card ul li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    color: var(--gimi-text);
+    font-size: 15px;
+  }
+  .subsection-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gimi-teal);
+  }
+
+  /* ---------- Inline definition pairs ---------- */
+  .info-pair {
+    margin-bottom: 14px;
+  }
+  .info-pair dt {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+  .info-pair dd { color: var(--gimi-text); font-size: 15px; }
+
+  /* ---------- Public Register search ---------- */
+  .register-search {
+    background: var(--gimi-white);
+    border: 1px solid var(--gimi-border);
+    border-radius: 20px;
+    padding: 48px;
+    box-shadow: 0 4px 24px rgba(27,31,59,0.04);
+    max-width: 720px;
+  }
+  .register-search h3 {
+    font-size: 24px;
+    color: var(--gimi-navy);
+    margin-bottom: 8px;
+  }
+  .register-search p { color: #111111; margin-bottom: 24px; }
+  .search-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .search-row input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1px solid var(--gimi-border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .search-row input:focus {
+    outline: none;
+    border-color: var(--gimi-teal);
+    box-shadow: 0 0 0 3px var(--gimi-teal-light);
+  }
+  .search-help {
+    font-size: 13px;
+    color: #111111;
+    padding-top: 8px;
+  }
+
+  /* ---------- Appeals/complaints chooser ---------- */
+  .recourse-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .recourse-card {
+    background: var(--gimi-white);
+    border: 2px solid var(--gimi-border);
+    border-radius: 16px;
+    padding: 36px;
+    transition: all 0.2s;
+  }
+  .recourse-card:hover {
+    border-color: var(--gimi-teal);
+  }
+  .recourse-card .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--gimi-teal-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--gimi-teal);
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .recourse-card h3 {
+    color: var(--gimi-navy);
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .recourse-card p {
+    color: #111111;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  /* ---------- Mission/vision blocks ---------- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .two-col h2 {
+    color: var(--gimi-navy);
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .two-col p { color: #111111; font-size: 17px; }
+
+  /* ---------- Stat strip ---------- */
+  .stat-strip {
+    background: var(--gimi-navy);
+    color: var(--gimi-white);
+    padding: 56px 0px;
+  }
+  .stat-strip-inner {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .stat-strip .num {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gimi-yellow);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-strip .label {
+    color: var(--gimi-white);
+    opacity: 0.85;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ---------- Impartiality callout ---------- */
+  .impartiality-callout {
+    background: linear-gradient(135deg, var(--gimi-teal-dark) 0%, var(--gimi-navy) 100%);
+    color: var(--gimi-white);
+    padding: 56px;
+    border-radius: 20px;
+    margin-bottom: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impartiality-callout::after {
+    content: '';
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .impartiality-callout h3 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .impartiality-callout p {
+    font-size: 18px;
+    opacity: 0.95;
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  /* ---------- Build-status note (TEMP — remove before publishing) ---------- */
+  .build-note {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--gimi-yellow);
+    color: var(--gimi-navy);
+    padding: 10px 18px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+  }
+
+  /* ---------- Template draft blocks ---------- */
+  .template-note {
+    background: #F0F7F8;
+    border-left: 3px solid var(--gimi-teal);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--gimi-text);
+  }
+  .template-note ul,
+  .template-note ol { padding-left: 18px; margin-top: 8px; }
+  .template-note li { margin-bottom: 4px; }
+  .template-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gimi-teal);
+    margin-bottom: 8px;
+  }
+  .ph-inline {
+    background: #FFF8DC;
+    border: 1px dashed #C8A000;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-style: italic;
+    font-size: 13px;
+    color: #7A5F00;
+  }
+
+/* ---------- Footer ---------- */
+  footer {
+    background: var(--gimi-navy-dark);
+    color: var(--gimi-white);
+    padding: 64px 0px 32px;
+    margin-top: 0;
+  }
+  .footer-inner {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-inner h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gimi-yellow);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .footer-inner ul { list-style: none; }
+  .footer-inner ul li { margin-bottom: 10px; }
+  .footer-inner a {
+    color: var(--gimi-white);
+    text-decoration: none;
+    opacity: 0.85;
+    font-size: 14px;
+    transition: opacity 0.2s;
+  }
+  .footer-inner a:hover { opacity: 1; color: var(--gimi-yellow); }
+  .footer-brand p {
+    font-size: 14px;
+    opacity: 0.7;
+    line-height: 1.7;
+    margin-top: 16px;
+  }
+  .footer-bottom {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+  }
+
+  /* ---------- Horizontal card grids (info chunks) ---------- */
+  .mini-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 10px;
+  }
+  .mini-card {
+    background: #F8FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 22px 24px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .mini-card:hover {
+    border-color: var(--gimi-teal);
+    transform: translateY(-2px);
+  }
+  .mini-card h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    letter-spacing: 1px;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+  }
+  .mini-card ul {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.7;
+    font-size: 14px;
+    color: var(--gimi-text);
+  }
+  .mini-card ul li { margin-bottom: 4px; }
+  .mini-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--gimi-text); }
+
+  /* CPE grid (7 cards: 4 + 3, left-aligned, uniform tiles) */
+  .cpe-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .cpe-flex .mini-card {
+    flex: 0 1 calc(25% - 16px);
+    min-width: 200px;
+    min-height: 104px;
+  }
+  @media (max-width: 1100px) { .cpe-flex .mini-card { flex: 0 1 calc(33.333% - 16px); } }
+  @media (max-width: 800px)  { .cpe-flex .mini-card { flex: 0 1 calc(50% - 16px); } }
+  @media (max-width: 500px)  { .cpe-flex .mini-card { flex: 0 1 100%; } }
+
+  /* Spec table (system requirements) */
+  .spec-table {
+    margin-top: 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row:nth-child(odd) { background: #F8FAFB; }
+  .spec-row .sr-key {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 14px 18px;
+    align-self: center;
+  }
+  .spec-row .sr-val {
+    font-size: 14px;
+    color: var(--gimi-text);
+    line-height: 1.55;
+    padding: 13px 18px;
+  }
+  @media (max-width: 640px) {
+    .spec-row { grid-template-columns: 1fr; }
+    .spec-row .sr-key { padding-bottom: 0; }
+    .spec-row .sr-val { padding-top: 4px; }
+  }
+
+  /* Timeline inset box (appeals / complaints) */
+  .timeline-box {
+    background: #EAF7F8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--gimi-text);
+  }
+  .timeline-box .tl-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+  }
+
+  /* Route cards (5 eligibility routes — forced 5-up on wide, 3-up on tablet, 1-up on mobile) */
+  .route-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .route-grid .route-card {
+    flex: 0 1 calc(33.333% - 16px);
+    min-width: 220px;
+  }
+  @media (max-width: 700px) {
+    .route-grid .route-card { flex: 0 1 100%; }
+  }
+  .route-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-left: 3px solid var(--gimi-teal);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--gimi-text);
+  }
+  .route-card strong {
+    display: block;
+    font-size: 12px;
+    color: var(--gimi-navy);
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+  }
+
+  /* Domain weighting cards (3 with big %) */
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .domain-card {
+    background: linear-gradient(180deg, #F8FAFB 0%, #FFFFFF 100%);
+    border: 1px solid #E5E7EB;
+    border-top: 3px solid var(--gimi-teal);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .domain-card .pct {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .domain-card .dname {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    margin-bottom: 8px;
+  }
+  .domain-card .ddesc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--gimi-text);
+    margin: 0;
+  }
+
+  /* Tech spec cards — forced 3x3 grid for 9 items */
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  @media (max-width: 900px) {
+    .spec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .spec-grid { grid-template-columns: 1fr; }
+  }
+  .spec-card {
+    background: #F8FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Tech requirements + fees: uniform tall tiles */
+  .spec-grid .spec-card { min-height: 106px; }
+  /* Two-column data card grid (accreditation, contact) */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .data-grid .spec-card { min-height: 84px; }
+  @media (max-width: 600px) {
+    .data-grid { grid-template-columns: 1fr; }
+  }
+  .spec-card .spec-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .spec-card .spec-value {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--gimi-text);
+  }
+
+
+  /* ---------- Proper subsection headers (replaces weak dt label) ---------- */
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0 14px 0;
+  }
+  .block-header::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--gimi-teal);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .block-header h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    margin: 0;
+    letter-spacing: -0.1px;
+  }
+  .block-body { font-size: 15px; line-height: 1.7; color: var(--gimi-text); }
+
+  /* ---------- Hero stat cards (format/pass score, cycle/CPE) ---------- */
+  .stat-hero-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 4px;
+  }
+  @media (max-width: 700px) {
+    .stat-hero-grid { grid-template-columns: 1fr; }
+  }
+  .stat-hero {
+    background: linear-gradient(180deg, #F8FAFB 0%, #FFFFFF 100%);
+    border: 1px solid #E5E7EB;
+    border-left: 4px solid var(--gimi-teal);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .stat-hero .sh-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    letter-spacing: 1.2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .stat-hero .sh-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .stat-hero .sh-sub {
+    font-size: 13px;
+    color: #111111;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---------- Grounds cards (suspension / withdrawal) ---------- */
+  .grounds-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  @media (max-width: 800px) {
+    .grounds-grid { grid-template-columns: 1fr; }
+  }
+  .grounds-card {
+    background: #F8FAFB;
+    border: 1px solid #E5E7EB;
+    border-top: 3px solid var(--gimi-teal);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .grounds-card h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gimi-teal);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+  }
+  .grounds-card .gc-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gimi-navy);
+    margin-bottom: 10px;
+  }
+  .grounds-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gimi-text);
+    margin: 0;
+  }
+
+  /* Improve route card readability */
+  .route-card {
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .route-card strong {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 36px; }
+    .section-title { font-size: 30px; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .recourse-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .nav-tabs { display: none; }
+  }
+</style>
+
+
+
+<!-- ============== TOP BAR ============== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://www.giminstitute.org/">← Back to giminstitute.org</a>
+  </div>
+</div>
+
+<!-- ============== MAIN NAV ============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <ul class="nav-tabs">
+      <li>
+        <a href="#about" class="active">About GIMI</a>
+        <div class="dropdown">
+          <a href="#about-mission">Mission &amp; History</a>
+          <a href="#about-accreditation">Accreditation Status</a>
+          <a href="#about-contact">Public Information &amp; Contact</a>
+        </div>
+      </li>
+      <li>
+        <a href="#certification">The Certification</a>
+        <div class="dropdown">
+          <a href="#cert-scope">Scope &amp; Prerequisites</a>
+          <a href="#cert-exam">Examination</a>
+          <a href="#cert-apply">Apply &amp; Fees</a>
+        </div>
+      </li>
+      <li>
+        <a href="#maintain">Maintain Certification</a>
+        <div class="dropdown">
+          <a href="#maintain-recert">Recertification &amp; CPE</a>
+          <a href="#maintain-conduct">Use of Certificate &amp; Conduct</a>
+        </div>
+      </li>
+      <li>
+        <a href="#impartiality">Impartiality</a>
+        <div class="dropdown">
+          <a href="#imp-policy">Our Impartiality Commitment</a>
+          <a href="#imp-separation">Separation from Training</a>
+        </div>
+      </li>
+      <li class="no-sub"><a href="#register">Public Register</a></li>
+      <li>
+        <a href="#appeals">Appeals &amp; Complaints</a>
+        <div class="dropdown">
+          <a href="#appeals-appeal">Submit an Appeal</a>
+          <a href="#appeals-complaint">Submit a Complaint</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">CIP-1 &nbsp;·&nbsp; ISO/IEC 17024 Accredited Certification</span>
+    <h1>Certified Innovation Professional <span>Level 1: Associate</span></h1>
+    <p style="font-size: 17px; font-weight: 500; color: var(--gimi-navy); margin-bottom: 16px;">Professionals learn to generate and apply breakthrough ideas. This is the only innovation management course accredited as ISO/IEC 17024.</p>
+    <p>The Certified Innovation Professional Level 1: Associate certification is designed for individuals who want to understand business innovation and the processes needed to generate breakthrough ideas. Participants learn idea generation tools and how to apply them to create more and better ideas for their organizations.</p>
+    <div class="hero-ctas">
+      <a href="https://www.giminstitute.org/product/certified-innovation-associate-level-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Apply Now</a>
+      <a href="#certification" class="btn btn-outline">Learn About the Certification</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TAB 1 — ABOUT GIMI ============== -->
+<section id="about" class="tab-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Our Organization</p>
+    <h2 class="section-title">About GIMI</h2>
+    <p class="section-lead">The Global Innovation Management Institute (GIM Institute) is a global, nonprofit organization with a mission to make innovation a management discipline.</p>
+
+    <div class="subsection-grid">
+
+      <article class="subsection-card">
+        <span class="subsection-number">1.1</span>
+        <h3 id="about-mission">Mission &amp; History</h3>
+        <p>Global Innovation Management Institute, Inc. (GIMI) is a non-profit organization registered in December 2010 with the Companies Board of the Commonwealth of Massachusetts, USA, with registered address at 110 Cambridge Street, Cambridge, MA 02141. Founded in 2009 by a group of chief innovation officers, executives, academics, and consultants, GIMI's mission is to advance global standards in innovation management through competence-based certification of persons.</p>
+        <p style="margin-top: 14px;">GIMI develops, maintains, and operates certification schemes that recognize the demonstrated competence of professionals in innovation management and related disciplines, in line with ISO/IEC 17024:2012. Our work spans 60+ countries, 140+ universities, and 1,200+ corporations. In 2023, GIMI merged with the International Association of Innovation Professionals (IAOIP), establishing the largest professional organization on innovation worldwide.</p>
+        <p style="margin-top: 14px;">GIMI certification programs are designed for professionals who are, or will be, responsible for promoting and managing innovation within an organization. Certified professionals gain insights into new approaches across various functional areas including marketing, technology, finance, and sales.</p>
+      </article>
+
+      <article class="subsection-card">
+        <span class="subsection-number">1.2</span>
+        <h3 id="about-accreditation">Accreditation Status</h3>
+        <div class="data-grid">
+          <div class="spec-card"><div class="spec-label">Standard</div><div class="spec-value">ISO/IEC 17024:2012, Conformity assessment for bodies operating certification of persons</div></div>
+          <div class="spec-card"><div class="spec-label">Accreditation Body</div><div class="spec-value">International Accreditation Service (IAS)</div></div>
+          <div class="spec-card"><div class="spec-label">Reference</div><div class="spec-value" style="color:#111111; font-style:italic;">Pending. The accreditation number will be published here once formally issued by IAS.</div></div>
+          <div class="spec-card"><div class="spec-label">Scope</div><div class="spec-value">Certified Innovation Professional Level 1: Associate</div></div>
+        </div>
+      </article>
+
+      <article class="subsection-card">
+        <span class="subsection-number">1.3</span>
+        <h3 id="about-contact">Public Information &amp; Contact</h3>
+
+        <div class="block-header" style="margin-top: 0;"><h4>Public Information (ISO/IEC 17024 Clause 7.2)</h4></div>
+        <p class="block-body" style="margin-bottom: 12px;">In conformity with ISO/IEC 17024:2012 Clause 7.2, GIMI publishes the following information without request:</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 20px; line-height: 1.9; font-size: 14px;">
+          <li><strong>Scope of certification</strong> and general description of the certification process: <a href="#cert-scope" style="color:var(--gimi-teal);">Section 2.1</a>, <a href="#cert-exam" style="color:var(--gimi-teal);">2.2</a>, <a href="#cert-apply" style="color:var(--gimi-teal);">2.3</a></li>
+          <li><strong>All prerequisites and routes to certification</strong>: <a href="#cert-scope" style="color:var(--gimi-teal);">Section 2.1</a></li>
+          <li><strong>Examination process</strong> (format, blueprint, identity verification, technical requirements, retake policy): <a href="#cert-exam" style="color:var(--gimi-teal);">Section 2.2</a></li>
+          <li><strong>Application process and fees</strong>: <a href="#cert-apply" style="color:var(--gimi-teal);">Section 2.3</a></li>
+          <li><strong>Recertification requirements</strong> (3-year cycle, 60 CPE units): <a href="#maintain-recert" style="color:var(--gimi-teal);">Section 3.1</a></li>
+          <li><strong>Use of certificate and Code of Conduct</strong>: <a href="#maintain-conduct" style="color:var(--gimi-teal);">Section 3.2</a> (downloadable PDF)</li>
+          <li><strong>Impartiality statement</strong>: <a href="#imp-policy" style="color:var(--gimi-teal);">Section 4</a> (downloadable PDF)</li>
+          <li><strong>Public verification of certifications</strong>: <a href="#register" style="color:var(--gimi-teal);">Section 5</a></li>
+          <li><strong>Appeals and complaints handling process</strong>: <a href="#appeals-appeal" style="color:var(--gimi-teal);">Section 6</a></li>
+        </ul>
+        <p style="font-size: 13px; color: #111111; margin-bottom: 20px;">All public information is reviewed annually and updated as needed. For corrections or to request additional information, contact <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>.</p>
+
+        <div class="block-header"><h4>Contact</h4></div>
+        <div class="data-grid">
+          <div class="spec-card"><div class="spec-label">General Inquiries</div><div class="spec-value"><a href="mailto:info@giminstitute.org" style="color:var(--gimi-teal);">info@giminstitute.org</a></div></div>
+          <div class="spec-card"><div class="spec-label">Phone</div><div class="spec-value">+1 (617) 945-2783</div></div>
+          <div class="spec-card"><div class="spec-label">Location</div><div class="spec-value">110 Cambridge Street, Cambridge, MA 02141, USA</div></div>
+          <div class="spec-card"><div class="spec-label">For Accreditation Bodies &amp; Auditors</div><div class="spec-value"><a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== STAT STRIP ============== -->
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div>
+      <div class="num">2009</div>
+      <div class="label">Founded</div>
+    </div>
+    <div>
+      <div class="num">60+</div>
+      <div class="label">Countries</div>
+    </div>
+    <div>
+      <div class="num">140+</div>
+      <div class="label">University Partners</div>
+    </div>
+    <div>
+      <div class="num">1,200+</div>
+      <div class="label">Corporations</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== TAB 2 — THE CERTIFICATION ============== -->
+<section id="certification" class="tab-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow">Certified Innovation Professional Level 1: Associate</p>
+    <h2 class="section-title">The Certification</h2>
+    <p class="section-lead">Everything you need to know about the Certified Innovation Professional Level 1: Associate certification: eligibility, examination, and the application journey.</p>
+
+    <div class="subsection-grid">
+
+      <article class="subsection-card">
+        <span class="subsection-number">2.1</span>
+        <h3 id="cert-scope">Scope &amp; Prerequisites</h3>
+        <p><strong>Scope.</strong> This page covers the <strong>Certified Innovation Professional Level 1: Associate</strong> scheme (CIP-1) only. This certification validates foundational knowledge of innovation fundamentals, tools, techniques, and processes for breakthrough innovations. Other GIMI certifications are administered separately and fall outside the scope of this accredited program.</p>
+
+        <div class="block-header"><h4>What You Get &amp; What You'll Learn</h4></div>
+        <div class="mini-card-grid">
+          <div class="mini-card">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Level 1 Certificate (upon passing)</li>
+              <li>Online examination fee</li>
+              <li>IMBOK Level 1 Guide (e-copy)</li>
+              <li>Remote proctor fee</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <h4>Skills You'll Master</h4>
+            <ul>
+              <li>Idea generation tools</li>
+              <li>Breakthrough thinking</li>
+              <li>Innovation Strategy fundamentals</li>
+              <li>Innovation Capacity building</li>
+              <li>Innovation Discipline</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <h4>Career Outcomes</h4>
+            <ul>
+              <li>Innovation Associate</li>
+              <li>Innovation Specialist</li>
+              <li>R&amp;D Practitioner</li>
+              <li>Product Innovation Analyst</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block-header"><h4>Eligibility Requirements</h4></div>
+        <p class="block-body" style="margin-bottom: 10px;">Candidates must satisfy at least one of the following routes to certification:</p>
+        <div class="route-grid">
+          <div class="route-card"><strong>Route 1 · GIMI Training</strong>Completion of GIMI's Level 1 in-house training</div>
+          <div class="route-card"><strong>Route 2 · CTP Training</strong>Completed a CTP-authorized prep course</div>
+          <div class="route-card"><strong>Route 3 · Self-Study</strong>Studied the GIMI Level 1 Book of Knowledge</div>
+          <div class="route-card"><strong>Route 4 · MBA</strong>Holding an MBA from a recognized institution</div>
+          <div class="route-card"><strong>Route 5 · Other Training</strong>Completed another recognized program</div>
+        </div>
+        <p style="margin-top: 14px; font-size: 14px;"><strong>Note:</strong> Completing a training program does not guarantee certification and confers no advantage in the examination process. The certification decision is based solely on examination performance.</p>
+      </article>
+
+      <article class="subsection-card">
+        <span class="subsection-number">2.2</span>
+        <h3 id="cert-exam">Examination</h3>
+
+        <div class="stat-hero-grid">
+          <div class="stat-hero">
+            <div class="sh-label">Format</div>
+            <div class="sh-value">60 Multiple-Choice Questions</div>
+            <p class="sh-sub">Administered online with remote proctoring.</p>
+          </div>
+          <div class="stat-hero">
+            <div class="sh-label">Pass Score</div>
+            <div class="sh-value">70%</div>
+            <p class="sh-sub">Required to be granted the certification.</p>
+          </div>
+        </div>
+
+        <div class="block-header"><h4>Domains &amp; Weighting</h4></div>
+        <div class="block-body">
+              <div class="domain-grid">
+                <div class="domain-card">
+                  <div class="pct">15%</div>
+                  <div class="dname">Demystifying Innovation</div>
+                  <p class="ddesc">Importance and definition of innovation; innovation breakthroughs.</p>
+                </div>
+                <div class="domain-card">
+                  <div class="pct">10%</div>
+                  <div class="dname">Innovation Techniques</div>
+                  <p class="ddesc">Individuals and teams; structured problem solving; thinking styles; cross-functional teams and networks.</p>
+                </div>
+                <div class="domain-card">
+                  <div class="pct">75%</div>
+                  <div class="dname">Innovation Process</div>
+                  <p class="ddesc">Innovation Intent; Opportunity Insights; Fields of Play; Business Concepts; Business Case.</p>
+                </div>
+        </div>
+
+        <div class="block-header"><h4>Identity Verification</h4></div>
+        <div class="block-body">
+          <p>All examinations are administered remotely. Before the examination begins, candidates must complete: webcam identity verification using a valid government-issued photo ID; a 360-degree environment scan; and confirmation that network and technical requirements are met. Continuous webcam, screen, and audio monitoring applies throughout the session. Unauthorized applications and websites are blocked. The session is recorded. Authorized aids are pen and paper only. GIMI does not administer onsite or in-person examinations.</p>
+          <p style="margin-top: 10px;">Before each examination, candidates complete an automated identity verification process: system compatibility check, consent and facial profile capture, ID card capture, and automated validation. Candidates must have a physical, unexpired photo ID (passport, driver's license, or official state-issued ID), a well-lit environment, and a working webcam.</p>
+        </div>
+
+        <div class="block-header"><h4>Technical Requirements</h4></div>
+        <div class="block-body">
+          <p>The examination is administered entirely online. Candidates must use a personal computer (desktop or laptop). Tablets, smartphones, and Chromebooks are not permitted.</p>
+              <p style="margin-top: 10px;"><strong>Minimum system requirements:</strong></p>
+              <div class="spec-table">
+                <div class="spec-row"><div class="sr-key">Operating System</div><div class="sr-val">Windows 10 or later; macOS 11 (Big Sur) or later</div></div>
+                <div class="spec-row"><div class="sr-key">Processor</div><div class="sr-val">Intel Core i3 or AMD equivalent (2.0 GHz or faster)</div></div>
+                <div class="spec-row"><div class="sr-key">RAM</div><div class="sr-val">4 GB minimum (8 GB recommended)</div></div>
+                <div class="spec-row"><div class="sr-key">Display</div><div class="sr-val">1280 x 720 resolution minimum; external monitor permitted</div></div>
+                <div class="spec-row"><div class="sr-key">Browser</div><div class="sr-val">Google Chrome (latest version) or Mozilla Firefox (latest version); no browser extensions active during the exam</div></div>
+                <div class="spec-row"><div class="sr-key">Webcam</div><div class="sr-val">Built-in or external webcam capable of 720p minimum</div></div>
+                <div class="spec-row"><div class="sr-key">Microphone</div><div class="sr-val">Built-in or external microphone required</div></div>
+                <div class="spec-row"><div class="sr-key">Internet Connection</div><div class="sr-val">Stable broadband connection of at least 5 Mbps download and 2 Mbps upload; wired (Ethernet) connection strongly preferred over Wi-Fi</div></div>
+                <div class="spec-row"><div class="sr-key">Environment</div><div class="sr-val">Private, quiet room; no other persons present; desk surface must be visible to webcam</div></div>
+              </div>
+          <p style="margin-top: 10px; font-size: 13px; color: #111111;">GIMI recommends running the proctor platform's system check at least 24 hours before your scheduled examination to confirm all requirements are met.</p>
+        </div>
+
+        <div class="block-header"><h4>Retake Policy</h4></div>
+        <div class="block-body">
+          <p>Candidates are permitted up to <strong>3 attempts</strong> to pass within the active eligibility period for each application. Attempt 1 is included in the original examination fee. Attempts 2 and 3 are governed by the retake fee policy set out in the GIMI Scheme Document. After 3 unsuccessful attempts, the candidate must wait <strong>12 months</strong> before submitting a new application. All attempts must be completed within the active eligibility window; unused attempts expire when the window closes. Each attempt draws different items from the item bank, and the examination platform enforces this rule so that no candidate sees the same items on consecutive attempts.</p>
+        </div>
+      </article>
+
+      <article class="subsection-card">
+        <span class="subsection-number">2.3</span>
+        <h3 id="cert-apply">Apply &amp; Fees</h3>
+        <div class="block-header" style="margin-top: 14px;"><h4>How to Apply</h4></div>
+        <ol class="block-body" style="margin-top: 8px; padding-left: 20px; line-height: 1.9;">
+          <li>Complete the online application via the GIMI website</li>
+          <li>Review and digitally sign the GIMI Candidate Agreement</li>
+          <li>Receive notification of your eligibility outcome within <strong>10 business days</strong></li>
+          <li>Pay the examination fee directly to GIMI</li>
+          <li>Receive your scheduling confirmation by email</li>
+          <li>Sit the remote-proctored online examination within your scheduled window</li>
+          <li>Receive the certification decision by email</li>
+        </ol>
+        <p style="margin-top: 16px;">
+          <a href="https://www.giminstitute.org/product/certified-innovation-associate-level-1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Apply Now</a>
+        </p>
+        <div class="block-header"><h4>Fees &amp; Certificate</h4></div>
+        <div class="spec-grid">
+          <div class="spec-card"><div class="spec-label">Examination Fee</div><div class="spec-value">USD $560 (first attempt, includes one examination sitting)</div></div>
+          <div class="spec-card"><div class="spec-label">Payment</div><div class="spec-value">Paid directly to GIMI</div></div>
+          <div class="spec-card"><div class="spec-label">Certificate Issued</div><div class="spec-value">"Certified Innovation Professional Level 1: Associate" (official IAS-registered scheme name)</div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== TAB 3 — MAINTAIN YOUR CERTIFICATION ============== -->
+<section id="maintain" class="tab-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Certificate Holders</p>
+    <h2 class="section-title">Maintain Your Certification</h2>
+    <p class="section-lead">Your certification is valid for 3 years. Here's what's required to keep it active.</p>
+
+    <div class="subsection-grid">
+
+      <article class="subsection-card">
+        <span class="subsection-number">3.1</span>
+        <h3 id="maintain-recert">Recertification &amp; CPE</h3>
+
+        <div class="stat-hero-grid">
+          <div class="stat-hero">
+            <div class="sh-label">Certification Cycle</div>
+            <div class="sh-value">3 Years</div>
+            <p class="sh-sub">From the effective date of certification.</p>
+          </div>
+          <div class="stat-hero">
+            <div class="sh-label">CPE Requirement</div>
+            <div class="sh-value">60 CPE Units</div>
+            <p class="sh-sub">One CPE unit equals 50 contact minutes of structured instruction or equivalent professional activity.</p>
+          </div>
+        </div>
+
+        <div class="block-header"><h4>What Counts as CPE</h4></div>
+        <div class="block-body">
+              <div>
+                <p>Qualifying CPE activities include:</p>
+                <div class="cpe-flex">
+                  <div class="mini-card"><h4>For-Credit Courses</h4><p>Graded for-credit courses in innovation management</p></div>
+                  <div class="mini-card"><h4>Working Groups</h4><p>Membership in a recognized professional body</p></div>
+                  <div class="mini-card"><h4>Innova-Events</h4><p>Participation in GIMI Innova-Events</p></div>
+                  <div class="mini-card"><h4>Think Tank</h4><p>Participation in GIMI Think Tank activities</p></div>
+                  <div class="mini-card"><h4>Speaking</h4><p>Speaking engagements at recognized professional events</p></div>
+                  <div class="mini-card"><h4>Publishing</h4><p>Published articles or research in innovation management</p></div>
+                  <div class="mini-card"><h4>Teaching</h4><p>Teaching or facilitating innovation-related courses or workshops</p></div>
+                </div>
+                <p style="margin-top:14px;"><strong>Evidence required.</strong> Each CPE submission must include the attendee name, course or event title, sponsoring organization, number of credits, and date. Registrations, invoices, and course syllabi alone are not sufficient. GIMI conducts an annual sample audit of CPE records.</p>
+              </div>
+        </div>
+
+        <div class="block-header"><h4>Submission</h4></div>
+        <div class="block-body">
+              <div>
+                <ol style="padding-left: 18px; line-height: 1.9;">
+                  <li>Log into your GIMI portal at least 60 days before your expiry date</li>
+                  <li>Complete the Recertification Application and upload documentation for all 60 CPE units</li>
+                  <li>Pay the recertification fee if applicable (no fee if all 60 CPE units are completed and documented)</li>
+                  <li>Receive the recertification decision by email</li>
+                </ol>
+                <p style="margin-top: 14px;">
+                  <a href="#" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Access Recertification Portal</a>
+                </p>
+              </div>
+        </div>
+
+        <div class="block-header"><h4>Missed Window</h4></div>
+        <div class="block-body">
+          <p>There is no reinstatement window. If a certification lapses, the certified person must submit a new application and pass the examination again. There is no pathway to recertify without re-examination once the certification has expired.</p>
+        </div>
+      </article>
+
+      <article class="subsection-card">
+        <span class="subsection-number">3.2</span>
+        <h3 id="maintain-conduct">Use of Certificate &amp; Code of Conduct</h3>
+        <div class="block-header"><h4>Rules for Use</h4></div>
+        <div class="grounds-grid">
+          <div class="grounds-card">
+            <h5>Permitted</h5>
+            <ul style="margin:6px 0 0; padding-left:18px; font-size:14px; line-height:1.65; color:var(--gimi-text);">
+              <li>Using the designation "Certified Innovation Professional Level 1: Associate" on business cards and professional profiles</li>
+              <li>Displaying the GIMI digital badge on professional platforms such as LinkedIn and email signatures</li>
+            </ul>
+          </div>
+          <div class="grounds-card">
+            <h5>Not Permitted</h5>
+            <ul style="margin:6px 0 0; padding-left:18px; font-size:14px; line-height:1.65; color:var(--gimi-text);">
+              <li>Any use that harms or misrepresents GIMI's reputation</li>
+              <li>Implying GIMI endorsement of any product, service, or organization</li>
+              <li>Claiming false affiliation with GIMI beyond the scope of your certification</li>
+              <li>Altering, reproducing, or transferring the certificate or digital badge in any form</li>
+              <li>Continuing to use the designation after expiry, suspension, or withdrawal</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:14px; font-size:14px; color:#111111; line-height:1.7;">Certificates and marks are the exclusive property of GIMI and are non-transferable. Upon suspension or withdrawal, use must cease immediately and the certificate must be returned. Ordinary misuse is subject to written notice; gross violations result in immediate revocation. Continued unauthorized use may result in legal action.</p>
+        <div class="block-header"><h4>Code of Conduct</h4></div>
+        <p class="block-body">The Code of Conduct is the binding behavioral standard for every GIMI certified person throughout the certification cycle. It covers core principles of integrity, competence, impartiality, confidentiality, and cooperation with GIMI oversight. Acceptance is a condition of holding certification.</p>
+        <p style="margin-top: 12px;">
+          <a href="https://www.giminstitute.org/wp-content/uploads/2026/06/GIMI_Code_of_Conduct.pdf" download class="btn btn-primary" style="display:inline-block; text-decoration:none; font-size:13px;">Download Code of Conduct (PDF)</a>
+        </p>
+        <div class="block-header" style="margin-top: 28px;"><h4>Suspension &amp; Withdrawal</h4></div>
+        <div class="grounds-grid">
+          <div class="grounds-card">
+            <h5>Suspension</h5>
+            <div class="gc-title">Grounds &amp; Duration</div>
+            <p>Failure to recertify by the expiry date, breach of the Code of Conduct, or submission of false information in the certification application. <strong>Minimum 6 months, maximum 2 years.</strong></p>
+          </div>
+          <div class="grounds-card">
+            <h5>Withdrawal</h5>
+            <div class="gc-title">Grounds</div>
+            <p>Failure to resolve the cause of suspension within the notified period, serious or repeated Code of Conduct breach, or fraudulent examination practices.</p>
+          </div>
+        </div>
+        <p style="margin-top: 14px; font-size: 14px; color: #111111; line-height: 1.7;">The certified person is notified in writing of the action, the reasons, the duration, and the right to appeal. All suspensions and withdrawals are reflected in the public certified-person registry. Withdrawal decisions may be contested through the GIMI appeals process (see Section 6).</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== TAB 4 — IMPARTIALITY ============== -->
+<section id="impartiality" class="tab-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow">ISO/IEC 17024 Requirement</p>
+    <h2 class="section-title">Impartiality</h2>
+    <p class="section-lead">GIMI's certification body operates independently from training. The information below explains how impartiality is structured and protected.</p>
+
+    <div class="impartiality-callout">
+      <h3 id="imp-policy">Our Impartiality Commitment</h3>
+      <p>The GIMI certification body is responsible for the impartiality of its certification activities. We do not allow commercial, financial, or other pressures to compromise that impartiality. Training is not required to sit for our certification examinations.</p>
+    </div>
+
+    <div class="subsection-grid">
+
+      <article class="subsection-card">
+        <span class="subsection-number">4.1</span>
+        <h3 id="imp-policy-detail">Impartiality Policy</h3>
+        <div class="block-header" style="margin-top: 14px;"><h4>Top Management Commitment</h4></div>
+        <div style="background:#f8fafb; border-left:3px solid var(--gimi-teal); padding:16px 18px; border-radius:4px; font-size:14px; line-height:1.75;">
+          <p>The Global Innovation Management Institute (GIMI) ensures that its operations safeguard objectivity and impartiality in delivering its certification programs in a fair and non-discriminatory manner.</p>
+          <p style="margin-top:10px;">GIMI policies and procedures are designed to be non-discriminatory and are administered with fairness and equity. GIMI makes its certification programs available to all applicants who meet the publicly available criteria for certification. Certification is not conditional upon membership in any association, group, or organization. However, certification eligibility may be restricted where there is an unacceptable risk to GIMI's integrity, such as evidence of fraudulent behavior, concealment of information, or provision of false information during the application or assessment process.</p>
+          <p style="margin-top:10px;">All GIMI personnel, contractors, and volunteers involved in the certification process act objectively and are free from undue commercial, financial, or other pressures that could compromise impartiality. They have an ongoing obligation to disclose potential conflicts of interest and ensure that they are appropriately managed.</p>
+          <p style="margin-top:10px;">GIMI does not offer or endorse any products or services affiliated with the certification program that could impact its impartiality. The institute does not suggest or imply that certification would be simpler, easier, faster, or more affordable if any specific person or consultancy were engaged.</p>
+          <p style="margin-top:10px;">GIMI actively monitors compliance with this Impartiality Statement through the administration of its Management System, including rigorous processes to identify and manage risks to impartiality. By adhering to these principles, GIMI is dedicated to upholding the credibility and objectivity of its certification programs.</p>
+          <p style="margin-top:14px; font-size:13px; color:#111111;">Approved by: Chief Executive Officer, GIMI, on behalf of Top Management. Reviewed annually in accordance with the GIMI Document Control Procedure.</p>
+          <p style="margin-top:16px;"><a href="https://www.giminstitute.org/wp-content/uploads/2026/06/GIMI_Impartiality_Statement.pdf" download class="btn btn-primary" style="display:inline-block; text-decoration:none; font-size:13px;">Download Signed Impartiality Statement (PDF)</a></p>
+        </div>
+
+        <div class="block-header"><h4>Financial Independence</h4></div>
+        <p class="block-body">All Certified Innovation Professional Level 1: Associate certification fees are paid directly to GIMI. Fees are not collected by or channelled through training partners. The public fee schedule is available in the Apply &amp; Fees section above.</p>
+
+        <div class="block-header"><h4>Independence of Certification Decisions</h4></div>
+        <p class="block-body">Personnel who make certification decisions for the Certified Innovation Professional Level 1: Associate scheme have not participated in training or examining that specific candidate.</p>
+
+        <div class="block-header"><h4>Report an Impartiality Concern</h4></div>
+        <p class="block-body">To report an impartiality concern related to the Certified Innovation Professional Level 1: Associate certification program, contact: <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a></p>
+        <p style="margin-top:8px;">All concerns are investigated by personnel independent of the reported activity. Acknowledgment within 5 business days of receipt.</p>
+      </article>
+
+      <article class="subsection-card">
+        <span class="subsection-number">4.2</span>
+        <h3 id="imp-separation">Separation from Training</h3>
+        <p>Preparation training is available through GIMI Certified Training Partners (CTPs) as an optional pathway. <strong>Completing a training program is not a prerequisite for the Certified Innovation Professional Level 1: Associate examination and confers no advantage in the certification process.</strong></p>
+        <p style="margin-top: 14px;">Structural controls separating training from certification for this scheme:</p>
+        <ul>
+          <li>The certification body operates under governance that is independent of the training function</li>
+          <li>All Level 1 certification fees are paid directly to GIMI, not through training partners</li>
+          <li>This certification page contains no links to training partner offers or course sales</li>
+          <li>Certified Training Partner agreements include impartiality obligations and are subject to ongoing monitoring</li>
+          <li>Certification decisions are made by personnel who have not trained or examined the candidate in question</li>
+        </ul>
+
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== TAB 5 — PUBLIC REGISTER ============== -->
+<section id="register" class="tab-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">ISO/IEC 17024, Clause 7.2.1</p>
+    <h2 class="section-title">Public Register</h2>
+    <p class="section-lead">Verify the current status of any GIMI Certified Innovation Professional Level 1: Associate certification.</p>
+
+    <div class="register-search">
+      <span class="subsection-number">5.1</span>
+      <h3>Search &amp; Verify</h3>
+      <p>Search by certified person's name or by certificate ID. Results show the current status, scope, effective date, and expiry date.</p>
+
+      <div class="search-row">
+        <input type="text" placeholder="Enter name or certificate ID…">
+        <button class="btn btn-primary">Search</button>
+      </div>
+      <p class="search-help"><strong>For employers and third parties:</strong> a "verified active" result confirms the holder currently meets GIMI's certification requirements. Status values: active, expired, suspended, or withdrawn.</p>
+
+      <p class="search-help" style="margin-top: 14px;"><strong>Interim verification:</strong> the public registry is being deployed. For verification requests during this period, contact <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a> with the certified person's name or certificate ID. GIMI will respond with current status, scope, effective date, and expiry date.</p>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== TAB 6 — APPEALS & COMPLAINTS ============== -->
+<section id="appeals" class="tab-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow">Candidate Rights</p>
+    <h2 class="section-title">Appeals &amp; Complaints</h2>
+    <p class="section-lead">Two channels for two different kinds of feedback. Use the route that matches your situation.</p>
+
+    <div class="recourse-grid">
+
+      <article class="recourse-card">
+        <div class="icon">↩</div>
+        <span class="subsection-number">6.1</span>
+        <h3 id="appeals-appeal">File an Appeal</h3>
+        <p>If you wish to contest a certification decision: eligibility, exam result, suspension, or withdrawal.</p>
+        <div style="margin-top: 16px; font-size: 13px; line-height: 1.75;">
+          <p><strong>Who can submit:</strong> Any applicant, candidate, or certified person seeking reconsideration of a certification decision, including denial of certification or recertification, suspension, withdrawal, or reduction of scope.</p>
+          <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Appeals Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway, and GIMI will classify and route it.</p>
+          <p style="margin-top: 10px;"><strong>Deadline:</strong> Within 30 calendar days of receipt of the decision being appealed.</p>
+          <div class="timeline-box">
+            <div class="tl-title">Timelines</div>
+            Acknowledgment of receipt: within <strong>10 business days</strong><br>
+            Decision communicated: within <strong>60 calendar days</strong> of acknowledgment<br>
+            Progress updates provided at each milestone<br>
+            Formal closure notice provided in writing
+          </div>
+          <p style="margin-top: 10px;"><strong>Handling:</strong> Appeals are determined by the GIMI Appeals Board, which is independent of the original decision. Any Appeals Board member involved in the underlying decision is recused. All appeals are handled in strict confidence; information is shared only on a need-to-know basis.</p>
+          <p style="margin-top: 10px;"><strong>Outcomes:</strong> Upheld (decision changed), denied (decision stands), or conditional (specific further requirements). The decision and reasons are notified in writing. Submission and resolution of an appeal shall not result in any discriminatory action against the submitter.</p>
+          <p style="margin-top: 10px;"><strong>No fee.</strong> GIMI does not charge any fee for the submission, handling, or determination of appeals.</p>
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3EbqrCvgdRyrkBlukayCRyNOIiZ_u41uD_RYJSjpwKwme-A/viewform" target="_blank" class="btn btn-primary" style="margin-top: 18px;">Submit an Appeal</a>
+      </article>
+
+      <article class="recourse-card">
+        <div class="icon">!</div>
+        <span class="subsection-number">6.2</span>
+        <h3 id="appeals-complaint">File a Complaint</h3>
+        <p>If you wish to raise concerns about service, conduct, process, or the behavior of a certified person.</p>
+        <div style="margin-top: 16px; font-size: 13px; line-height: 1.75;">
+          <p><strong>Who can submit:</strong> Any person or organization regarding GIMI's certification activities or the conduct of a certified person.</p>
+          <p style="margin-top: 10px;"><strong>How to submit:</strong> Complete the Complaint Submission Form, available on the GIMI website, and send it to <a href="mailto:certification@giminstitute.org" style="color:var(--gimi-teal);">certification@giminstitute.org</a>. If you are unsure whether your matter is an appeal or a complaint, submit anyway, and GIMI will classify and route it.</p>
+          <p style="margin-top: 10px;"><strong>When to submit:</strong> Complaints may be submitted at any time relevant to the matter complained of.</p>
+          <div class="timeline-box">
+            <div class="tl-title">Timelines</div>
+            Acknowledgment of receipt: within <strong>48 hours</strong><br>
+            Initial review completed: within <strong>5 business days</strong><br>
+            Investigation completed: typically within <strong>15 business days</strong><br>
+            Progress updates provided at each milestone<br>
+            Formal closure notice provided in writing
+          </div>
+          <p style="margin-top: 10px;"><strong>Handling:</strong> Complaints are handled by personnel independent of the matter complained of. Where the complaint concerns the Certification Director, the CEO assumes handling responsibility. Where the complaint concerns the CEO, the matter is referred to the Advisory Commission. All complaints are handled in strict confidence.</p>
+          <p style="margin-top: 10px;"><strong>Outcomes:</strong> Written outcome including the resolution and any corrective actions. Where the complainant remains dissatisfied, the option of escalation to an independent review is available. Submission and resolution of a complaint shall not result in any discriminatory action against the submitter.</p>
+          <p style="margin-top: 10px;"><strong>No fee.</strong> GIMI does not charge any fee for the submission, handling, or determination of complaints.</p>
+        </div>
+        <a href="https://docs.google.com/forms/d/1om6fTh11PDNmT2F4lt6ivsy7F3wVCwmT7fqXRfVs0_Y/" target="_blank" class="btn btn-primary" style="margin-top: 18px;">Submit a Complaint</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+
+
+
+
+<script>
+  (function () {
+    var sections = document.querySelectorAll('section.tab-section');
+    var navLinks = document.querySelectorAll('.nav-tabs a');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          navLinks.forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-90px 0px -60% 0px', threshold: 0 });
+    sections.forEach(function (s) { observer.observe(s); });
+  })();
+</script>
